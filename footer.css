@@ -93,7 +93,6 @@ button[type="submit"] {
     cursor: pointer;
     font-size: .75rem;
     font-weight: 600;
-    margin-left: .5rem;
     width: 120px;
     height: 40px;
     letter-spacing: 1px;
@@ -157,9 +156,11 @@ button[type="submit"]:hover {
 } */
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .footer-container {
-        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 70px;
         align-items: flex-start;
         padding: 20px;
     }
@@ -175,13 +176,10 @@ button[type="submit"]:hover {
     }
 
     input[type="email"] {
-        border-radius: 5px;
         margin-bottom: 10px;
-    }
-
-    button[type="submit"] {
-        border-radius: 5px;
+        max-width: 200px;
     }
 }
+
 
   
