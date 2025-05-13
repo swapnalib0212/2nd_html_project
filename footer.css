@@ -14,8 +14,8 @@
     font-size: .9rem;
 }
 .list-inline-item a svg {
-    display: inline-block; /* Ensure the SVG is treated as an inline element */
-    vertical-align: middle; /* Align the icon vertically with surrounding text if any */
+    display: inline-block; 
+    vertical-align: middle; 
     background-color: #efc2b3;
     color: #1a2456;
 }
@@ -142,20 +142,9 @@ button[type="submit"]:hover {
     margin-bottom: 1.2rem;
     letter-spacing: 1px;
 }
-/* .list-inline-item {
-    align-items: center;
-    background-color: #efc2b3;
-    color: #1a2456;
-    border-radius: 50%;
-    display: inline-flex;
-    height: 2em;
-    padding: .5em;
-    text-align: center;
-    width: 2em;
 
-} */
 
-/* Responsive adjustments */
+
 @media (max-width: 900px) {
     .footer-container {
         display: flex;
