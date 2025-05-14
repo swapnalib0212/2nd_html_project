@@ -1,15 +1,16 @@
 .footer-section {
     font-family: prompt, sans-serif;
-         margin: 0;
-         background-color: #192144; 
-         color: #ffffff; 
+    margin: 0;
+    background-color: #192144; 
+    color: #ffffff;
+         
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
     padding: 40px 50px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     font-size: .9rem;
 }
@@ -171,4 +172,22 @@ button[type="submit"]:hover {
 }
 
 
+   /* .copyright {
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #192144;
+        color:#efc2b3;
+        padding: 10px 20px;
+        font-size: 0.875rem;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        z-index: 999;
+      
+   } */
+      
   
