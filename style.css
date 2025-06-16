@@ -180,6 +180,8 @@ body, html {
   position: relative;
   overflow: hidden;
   aspect-ratio: 3/2; 
+  object-fit: cover;
+  
   
 }
 .product-img-wide {
