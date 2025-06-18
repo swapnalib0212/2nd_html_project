@@ -44,25 +44,24 @@ const ProductList = [
 
 const productGrid = document.getElementById("productGrid");
 
-ProductList.forEach(product => {
+ProductList.forEach(product =>  {
     const isWide = product.isWide;
     const productCard = document.createElement("div");
     productCard.className = isWide ? "product-card-wide" : "product-card";
 
-    const imageWrapperClass = isWide ? "image-Wrapper-Wide" : "image-wrapper";
+   const imageWrapperClass = isWide ? "image-wrapper-wide" : "image-wrapper"; 
     
-
     productCard.innerHTML = `
-    <div class ="badge-first">Pre-Order</div>
-    <div class ="${imageWrapperClass}">
-         <img src="${product.productImg1}" class="product-img default" />
-         <img src="${product.productImg2}" class="product-img hover" />
+    <div class ="badge-first">Pre-Order</div> 
+    <div class = "${imageWrapperClass}">
+         <img src = "${product.productImg1}" class = "product-img default" />
+         <img src = "${product.productImg2}" class = "product-img hover" />
     </div>
     <div class = "product-details">
         <h3>${product.productName}</h3>
         <span class = "sold-out">${product.status}</span>
     </div>
-    <p class ="paragraph">${product.productDescription}</p>
+    <p class = "paragraph">${product.productDescription}</p>
     `;
 
     productGrid.appendChild(productCard);
@@ -141,16 +140,19 @@ const ProductList2 = [
      status2: "$19-$129",
     },
 ]
-
+debugger
 const sliderContainer = document.querySelector(".Multipad-flex");
+
 ProductList2.forEach(product => {
     const card = document.createElement("div");
-    card.classList.add("slider-card");
-
+    card.classList.add("slider-card"); 
+    const mainimgclassname = product.productImg2_2 ?  "slider-img default" : "slider-img";
+    
     card.innerHTML = `
     <div class ="badge">Pre-Order</div>
     <div class = "monogram-wrapper ${product.button2 ? "shop" : ""}">
-    <img src = "${product.productImg1_2}" class="slider-img default">
+    <img src = "${product.productImg1_2}" class="${mainimgclassname}">
+
     ${product.productImg2_2 ? `<img src = "${product.productImg2_2}" class= "slider-img hover">` : ""}
     </div>
     <div class = "product-details">
@@ -159,5 +161,6 @@ ProductList2.forEach(product => {
     ${product.button2 ? `<a href= "#" class= "shop-now-button">Shop Now</a>` : ""}
 </div>
 `;
+
 sliderContainer.appendChild(card);
 });
