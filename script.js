@@ -1,3 +1,6 @@
+let cart = {};
+
+
 function toggleMenu () {
     const nav = document.querySelector('.nav-links');
     nav.classList.toggle('open');
@@ -86,6 +89,7 @@ const ProductList2 = [
      productName2: "Monogram Core",
      productImg1_2: "./Packaging_CoreBracket1_Monogram_May20204545_ccb8b10a-0772-448b-9857-a14fa83bd5b7_750x500_crop_center.jpg.webp" ,
      productImg2_2: "./Consoles_CoreBracket1_Monogram_May2020_4578_6683fd8e-be63-45bb-9fbd-dd82a4838db8_750x500_crop_center.jpg.webp",
+     button2: true,
      status2: "$159",
     },
     {
@@ -121,29 +125,33 @@ const ProductList2 = [
     {
      productName2: "Console Pack: Video",
      productImg1_2: "./SW-box-render-mini-video-final-august_1080x778_crop_center.jpg.webp",
+     button2: true,
      status2: "$69",
     },
     {
      productName2: "Console Pack: Photo",
      productImg1_2: "./SW-box-render-mini-photo-final-august_1080x778_crop_center.jpg.webp",
+     button2: true,
      status2: "$39",
     },
     {
      productName2: "Console Pack: Audio",
      productImg1_2: "./SW-box-render-mini-midi-final-august_1080x778_crop_center.jpg.webp",
+     button2: true,
      status2: "$29",
     },
     {
      productName2: "Monogram Care",
      productImg1_2: "./Care-updated-traveler_1080x714_crop_center.jpg.webp",
      productImg2_2: "./MONO_CONSOLE_CARE_STU_453eaa1a-02d9-4ba7-9d9a-8d05e2915f8f_1080x714_crop_center.jpg.webp",
+     button2: true,
      status2: "$19-$129",
     },
 ]
-debugger
-const sliderContainer = document.querySelector(".Multipad-flex");
 
-ProductList2.forEach(product => {
+
+const sliderContainer = document.querySelector(".Multipad-flex");
+ProductList2.forEach((product, index) => {
     const card = document.createElement("div");
     card.classList.add("slider-card"); 
     const mainimgclassname = product.productImg2_2 ?  "slider-img default" : "slider-img";
@@ -154,13 +162,183 @@ ProductList2.forEach(product => {
     <img src = "${product.productImg1_2}" class="${mainimgclassname}">
 
     ${product.productImg2_2 ? `<img src = "${product.productImg2_2}" class= "slider-img hover">` : ""}
-    </div>
+    ${product.button2 ? 
+    `<div class="cart-controls">
+        <button onclick="addtocart(${index}, this)" class="add-btn">
+        Add to Cart
+        </button>
+        </div>`
+         : ""}
+      </div>
+    
     <div class = "product-details">
     <h3>${product.productName2}</h3>
-    <span class ="sold-out ${product.price2 ? "dollar" : ""}">${product.status2}</span>
-    ${product.button2 ? `<a href= "#" class= "shop-now-button">Shop Now</a>` : ""}
+    <span class ="sold-out">${product.status2}</span>
 </div>
 `;
 
 sliderContainer.appendChild(card);
 });
+
+// function addtocart(index, btn) {
+//     if(!cart[index]) {
+//         cart[index] = 1;
+//     }
+//     const control = btn.closest(".cart-controls");
+//      updateProductUI(index, control);
+//      updateCartCount();
+// }
+
+
+// function increaseQty(index, btn) {
+//     cart[index]++;
+//     const control = btn.closest(".cart-controls");
+//     updateProductUI(index, control);
+//     updateCartCount();
+// }
+
+// function decreaseQty(index, btn) {
+//     cart[index]--;
+//    const control = btn.closest(".cart-controls");
+//     if (cart[index] <= 0) {
+//         delete cart[index];
+//     }
+
+//     updateProductUI(index, control);
+//     updateCartCount();
+// }
+
+// function updateProductUI(index, control) {
+
+//     const controls = document.querySelectorAll(".cart-controls");
+//     if (!control) return;
+
+
+//     if (cart[index]) {
+//         control.innerHTML = `
+//             <div class="qty-controls">
+//                 <button onclick="decreaseQty(${index}, this)">-</button>
+//                 <span>${cart[index]}</span>
+//                 <button onclick="increaseQty(${index}, this)">+</button>
+//             </div>
+//         `;
+//     } else {
+//         control.innerHTML = `
+//             <button onclick="addtocart(${index}, this)" class="add-btn">
+//                 Add to Cart
+//             </button>
+//         `;
+//     }
+// }
+function addtocart(index, btn) {
+    cart[index] = 1;
+    updateUI(index, btn);
+}
+
+function changeQty(index, amount, btn) {
+    cart[index] += amount;
+
+    if (cart[index] <= 0) {
+        delete cart[index];
+    }
+
+    updateUI(index, btn);
+}
+
+function updateUI(index, btn) {
+    const control = btn.closest(".cart-controls");
+
+    if (!control) return;
+
+    if (cart[index]) {
+        control.innerHTML = `
+            <div class="qty-controls">
+                <button onclick="changeQty(${index}, -1, this)">-</button>
+                <span>${cart[index]}</span>
+                <button onclick="changeQty(${index}, 1, this)">+</button>
+            </div>
+        `;
+    } else {
+        control.innerHTML = `
+            <button onclick="addtocart(${index}, this)" class="add-btn">
+                Add to Cart
+            </button>
+        `;
+    }
+
+    updateCart();
+}
+
+
+
+
+// function updateCartCount() {
+
+//     let total = 0;
+
+//      const cartItemsContainer = document.getElementById("cart-items");
+//     const emptyMessage = document.getElementById("empty-cart");
+
+//     cartItemsContainer.innerHTML = "";
+//     for (let key in cart) {
+//         total += cart[key];
+
+//         const product = ProductList2[key];
+
+//         const div = document.createElement("div");
+//         div.classList.add("cart-item");
+
+//         div.innerHTML = `
+//             <h4>${product.productName2}</h4>
+//             <p>Quantity: ${cart[key]}</p>
+//             <p>Price: ${product.status2}</p>
+//         `;
+
+//         cartItemsContainer.appendChild(div);
+//     }
+    
+    
+
+//     document.getElementById("cart-count").textContent = total;
+//     if (total === 0) {
+//         emptyMessage.style.display = "block";
+//     } else {
+//         emptyMessage.style.display = "none";
+//     }
+// }
+
+
+function updateCart() {
+
+    const cartItemsContainer = document.getElementById("cart-items");
+    const emptyMessage = document.getElementById("empty-cart");
+    const cartCount = document.getElementById("cart-count");
+
+    cartItemsContainer.innerHTML = "";
+
+    let totalItems = 0;
+
+    Object.keys(cart).forEach(key => {
+
+        const product = ProductList2[key];
+        totalItems += cart[key];
+
+        cartItemsContainer.innerHTML += `
+            <div class="cart-item">
+                <h4>${product.productName2}</h4>
+                <p>Quantity: ${cart[key]}</p>
+                <p>Price: ${product.status2}</p>
+            </div>
+        `;
+    });
+
+    cartCount.textContent = totalItems;
+    emptyMessage.style.display = totalItems ? "none" : "block";
+}
+
+
+
+    function toggleCart() {
+    const panel = document.getElementById("cart-panel");
+    panel.classList.toggle("open");
+}

@@ -41,6 +41,8 @@
     object-fit: contain;
     top: 0;
     left: 0;
+    z-index: 1;
+    pointer-events: none;
   }
   
   
@@ -49,9 +51,10 @@
     top: 0;
     left: 0;
     opacity: 0;
-    object-fit: cover;
+    object-fit: contain;
     height: 100%;
   }
+  
   
   
   .slider-card:hover .slider-img.hover {
@@ -89,12 +92,28 @@
     display: none;
  }
  
- .shop-now-button {
+ .add-to-cart-btn {
+  position: absolute;
+  bottom: 15px;
+  width: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00144F;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: 10;
+}
+ /* .shop-now-button {
         background-color: #00144F;
         border: 1px solid #00144F;
         padding:  1rem;
         border-radius: 50rem;
-        position: relative;
+        position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -107,12 +126,12 @@
         opacity: 0;
         visibility: hidden;
         
-}
+} */
 
 
-.slider-card:hover .shop-now-button{
+.monogram-wrapper:hover .add-to-cart-btn{
   opacity: 1;
-  visibility: visible;
+
  
 }
 .dollar {
@@ -128,8 +147,55 @@
 }
 
 
-
+.monogram-wrapper:hover .shop-now-button {
+  opacity: 1;
+}
   
+
+.add-btn {
+    width: 120px;
+    padding: 10px;
+    border-radius: 50px;
+    background: #1A2456;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.cart-controls {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+/* 
+.cart-container {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  width: 300px;
+  background: white;
+  padding: 20px;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+} */
   
   @media (max-width: 992px) {
     .slider-card {
@@ -154,3 +220,8 @@
       max-width: 200px;
     }
   }
+
+  /* .shop-now-button {
+  background: red;
+  opacity: 1;
+} */

@@ -371,3 +371,38 @@ body, html {
    }
    }
           
+
+  .cart-panel {
+  position: fixed;
+  top: 80px;
+  right: -350px;
+  width: 320px;
+  height: 400px;
+  background: white;
+  box-shadow: -3px 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.3s ease;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.cart-panel.open {
+  right: 0;
+}
+
+.cart-item {
+  border-bottom: 1px solid #b47575;
+  padding: 10px 0;
+}
+
+.cart-item h4 {
+  color:#b47575;
+  font-size: 14px;
+
+}
+
+.cart-item p {
+  color:#b47575;
+  font-size: 13px;
+  margin: 5px 0;
+}
